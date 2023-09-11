@@ -1,0 +1,54 @@
+* 
+
+```
+Code block
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool is_Symmetric(TreeNode* left, TreeNode* right)
+    {
+        //如果左右孩子都为空，证明递归完了，返回true
+        if(left == nullptr && right == nullptr)
+        {
+            return true;
+        }
+
+        //如果孩子其中有一个为空，返回false（如果不提前判断，之后比较时会错误使用空指针）
+        if(!left || !right)
+        {
+            return false;
+        }
+
+        //比较是否镜像对称
+        if(left->val != right->val)
+        {
+            return false;
+        }
+
+        //递归搜索
+        return is_Symmetric(left->left, right->right) && is_Symmetric(right->left, left->right);
+    }
+    
+    bool isSymmetric(TreeNode* root) {
+        //如果是空树，也是对称（测试用例告诉我的）
+        if(root == nullptr)
+        {
+            return true;
+        }
+
+        //递归搜索左右孩子
+        return is_Symmetric(root->left, root->right);
+    }
+};
+
+
+```
+

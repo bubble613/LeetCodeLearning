@@ -1,0 +1,50 @@
+### 解题思路
+
+递归，使用左右调用并比较。
+
+### 执行结果
+
+![image.png](https://pic.leetcode.cn/1677150959-FlpjOY-image.png)
+
+### 代码
+
+* cpp
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSymmetric(TreeNode* root) {
+        if (root == NULL) {
+            return true;
+        }
+        return dfs(root->left, root->right);
+    }
+
+    bool dfs(TreeNode* A, TreeNode* B) {
+        if (A == NULL && B == NULL) {
+            return true;
+        }
+        else if (A != NULL && B != NULL) {
+            return A->val == B->val && dfs(A->left, B->right) && dfs(A->right, B->left);
+        } else {
+            return false;
+        }
+
+    }
+};
+```
+
+### 复杂度分析
+
+- 时间复杂度：***O(N)***
+- 空间复杂度：***O(N)***
+
